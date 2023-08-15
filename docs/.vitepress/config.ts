@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import { generateSitemap as sitemap } from 'sitemap-ts'
@@ -109,7 +110,6 @@ export default withPwa(defineConfig({
     ['meta', { property: 'og:url', content: site }],
     ['meta', { property: 'og:locale', content: 'zh_CN' }],
     // analytics
-    // eslint-disable-next-line n/prefer-global/process
     ['script', { 'async': '', 'defer': '', 'data-website-id': `${process.env.UMAMI_WEBSITE_ID || ''}`, 'src': `${process.env.UMAMI_ENDPOINT || ''}` }],
   ],
   async buildEnd(siteConfig) {
