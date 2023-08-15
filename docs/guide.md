@@ -1,5 +1,5 @@
 ---
-contributors: ["Choi Yang", "HearLing"]
+contributors: []
 ---
 
 # 欢迎来到

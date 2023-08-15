@@ -37,6 +37,6 @@ function isNotEmpty(arr: string | string[]) {
     <a :href="getGithubLink(defaultAuthor)" rel="noreferrer" target="_blank">
       <img :src="getAvatarUrl(defaultAuthor)" class="w-8 h-8 rounded-full">
     </a>
-    {{ 'Arce Lai' }}
+    {{ 'Choi Yang' }}
   </div>
 </template>

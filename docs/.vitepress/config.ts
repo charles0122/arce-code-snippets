@@ -14,13 +14,31 @@ import algolia from './algolia'
 export default withPwa(defineConfig({
   vite: {
     plugins: [
-      AutoSidebar(),
+      AutoSidebar({
+        // 忽略一些文件
+        ignoreList: ['index.md', 'images', 'font'],
+        ignoreIndexItem: true,
+        deletePrefix: /^\d+\./,
+        beforeCreateSideBarItems(data: string[]) {
+          const regex = /^\d+/
+          return data.sort((a, b) => {
+            const aOrder = a.match(regex)?.[0]
+            const bOrder = b.match(regex)?.[0]
+            if (!aOrder || !bOrder)
+              return 0
+
+            return Number(aOrder) - Number(bOrder)
+          })
+        },
+
+      }),
     ],
   },
   pwa,
   outDir: '../dist',
   title: name,
   description,
+  appearance: 'dark',
   lastUpdated: true,
   useWebFonts: false,
   markdown: {
@@ -53,23 +71,25 @@ export default withPwa(defineConfig({
       {
         text: '代码片段',
         items: [
-          { text: '⭐ JavaScript', link: '/js/guide/' },
-          { text: '💻 Java', link: '/java/guide/' },
-          { text: '🔧 Dart', link: '/dart/guide/' },
+          { text: '⭐ 使用代码片段', link: '/snippets/' },
+          { text: '🔤 JavaScript', link: '/snippets/2.js/' },
+          { text: '💻 Java', link: '/snippets/3.java/' },
+          { text: '🔧 Dart', link: '/snippets/4.dart/' },
         ],
       },
       {
         text: '编程',
         items: [
-          { text: '⭐ 资源导航', link: '/favorites/index' },
+          { text: '⭐ 资源导航', link: '/favorites/' },
           { text: '💻 编程学习', link: '/program/guide/' },
         ],
       },
       {
         text: '备忘录',
         items: [
-          { text: '⭐ 使用备忘录', link: '/mome/guide/' },
-
+          { text: '⭐ 使用备忘录', link: '/memo/guide/' },
+          { text: '⭐ 使用备忘录', link: '/memo/yarn/' },
+          { text: '⭐ 使用备忘录', link: '/memo/git/' },
         ],
       },
       {

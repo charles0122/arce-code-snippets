@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { execSync } from 'node:child_process'
 import { readJSONSync } from 'fs-extra'
 import { updateContributors } from './utils'
@@ -10,7 +11,6 @@ const { version } = readJSONSync('package.json')
 
 if (oldVersion === version) {
   console.log('canceled')
-  // eslint-disable-next-line n/prefer-global/process
   process.exit()
 }
 
